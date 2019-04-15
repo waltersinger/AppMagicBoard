@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/color_item_m"
+        android:title="@string/color_item_menu"
+        android:icon="@drawable/ic_action_color_lens"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/stroke_item_m"
+        android:title="@string/stroke_m"
+        android:icon="@drawable/ic_action_stroke"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/eraser_item_m"
+        android:title="@string/eraser_m"
+        android:icon="@drawable/ic_action_eraser"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/share_item_m"
+        android:icon="@drawable/ic_share"
+        android:title="@string/compartir_m"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/borrar_item_m"
+        android:title="@string/clear_board_m"
+        app:showAsAction="withText" />
+
+    <item android:id="@+id/guardar_item_m"
+        android:title="@string/guardar_m"
+        app:showAsAction="withText"
+        />
+    <item
+        android:id="@+id/cargar_imagen_m"
+        android:title="@string/cargar_imagen_m"
+        app:showAsAction="withText"
+        />
+</menu>

@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Pikasso App</string>
+    <string name="app_name">Pizarra</string>
+    <string name="color_item_menu">Color</string>
+    <string name="clear_board_m">Limpiar</string>
+    <string name="compartir_m">Compartir</string>
+    <string name="eraser_m">Borrador</string>
+    <string name="stroke_m">Trazo</string>
+    <string name="take_picture_m">Foto</string>
+    <string name="guardar_m">Guardar...</string>
+    <string name="cargar_imagen_m">Cargar imagen...</string>
+    <string name="title_dialog_width">Grosor de trazo</string>
+
+    <!-- Cuadro seleccion color -->
+    <string name="rojo">Rojo</string>
+    <string name="verde">Verde</string>
+    <string name="azul">Azul</string>
+    <string name="alfa">Alfa</string>
+    <string name="title_dialog_color">Seleccione color</string>
 </resources>

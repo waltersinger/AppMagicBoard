@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MBoard</string>
+    <string name="color_item_menu">Color</string>
+    <string name="clear_board_m">Clear</string>
+    <string name="compartir_m">Share</string>
+    <string name="eraser_m">Eraser</string>
+    <string name="stroke_m">Stroke</string>
+    <string name="take_picture_m">Foto</string>
+    <string name="guardar_m">Save...</string>
+    <string name="cargar_imagen_m">Load image...</string>
+    <string name="title_dialog_width">Stroke width</string>
+
+    <!-- Color dialog -->
+    <string name="rojo">Red</string>
+    <string name="verde">Green</string>
+    <string name="azul">Blue</string>
+    <string name="alfa">Alpha</string>
+    <string name="title_dialog_color">Choose a color</string>
+</resources>

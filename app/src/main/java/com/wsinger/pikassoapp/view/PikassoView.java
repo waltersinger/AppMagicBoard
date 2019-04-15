@@ -1,18 +1,29 @@
 package com.wsinger.pikassoapp.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class PikassoView extends View {
@@ -23,7 +34,7 @@ public class PikassoView extends View {
     private Bitmap bitmap; //imagen
     private Canvas bitmapCanvas; //el lienzo
     private Paint paintScreen; //
-    private Paint paintLine;//lapiz
+    private static Paint paintLine;//lapiz
     private HashMap<Integer, Path> pathMap; //una linea que une dos o mas puntos
     private HashMap<Integer, Point> previousPointMap; //es un punto (basicamente un (x,y) en la pantalla)
 
@@ -165,4 +176,77 @@ public class PikassoView extends View {
         points.x = (int)x;
         points.y=(int)y;
     }
+
+    public void setDrawingColor(int color){
+        paintLine.setColor(color);
+    }
+
+    public void setStrokePencil(float w){
+        paintLine.setStrokeWidth(w);
+    }
+
+    public static int getColor() {
+        int p = paintLine.getColor();
+        return p;
+    }
+
+    public int getStrokePencil() {
+        return (int) paintLine.getStrokeWidth();
+    }
+
+    @SuppressLint("WrongThread")
+    public void saveImageToStore()  {
+
+        ContextWrapper cw = new ContextWrapper(getContext());
+
+        //String root = Environment.getExternalStorageDirectory().toString();
+        //File myDir = new File(root + "/appMagicBoard");
+        File myDir = cw.getDir("imageDir",Context.MODE_PRIVATE);
+
+//        if (!myDir.exists()) {
+//            myDir.mkdirs();
+//        }
+
+        String fname = "myMagicboard-"+System.currentTimeMillis()+".png";
+        File file = new File (myDir, fname);
+        if (file.exists ())
+            file.delete ();
+
+
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(file);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                out.flush();
+                out.close();
+                Log.d("Image:", myDir.getAbsolutePath());
+                Toast message = Toast.makeText(getContext(), "Image Saved +" + myDir.getAbsolutePath(), Toast.LENGTH_LONG);
+                message.setGravity(Gravity.CENTER, message.getXOffset() / 2,
+                        message.getYOffset() / 2);
+                message.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void loadImageFromStorage(String path) {
+
+        try {
+            File f = new File(path, "profile.jpg");
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            // ImageView imageView = findViewById(R.id.savedImageView);
+            // imageView.setImageBitmap(b);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
